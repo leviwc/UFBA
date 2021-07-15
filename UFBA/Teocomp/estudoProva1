@@ -1,0 +1,52 @@
+Linguagens:
+Linguagens regulares que são resolvidas por automatos finitos
+Linguagens livres de contexto LLC, que são resolvidas por automatos de pilha
+Linguagens Sensíveis ao Contexto resolvidas por máquinas de turing com fita limitada
+Linguagens com Estrutura de Frases resolvidas com Máquinas de Turing.
+
+Diagonal do Cantor:
+O conjunto 2^N dos subconjuntos dos naturais(N) não é um conjunto enumerável.
+
+técnica de demonstração, colocando todas as possibilidades de f(i) como bits, podemos formar um conjunto que é o inverso
+da diagonal principal, sendo assim esse conjunto não pode ser colocado em nenhuma linha pois feriria essa definição, e por
+isso é impossivel enumerar todos os conjuntos
+
+Maquinas de turing
+É uma maquina que contem uma fita infinita um marcador da posição atual na fita
+Ela é uma 8-upla:
+Temos:
+Alfabeto de entrada,
+Conjunto de estados,
+Função de transição,
+Estado inicial,
+Conjunto de estados finais,
+Alfabeto auxiliar,
+Simbolo em branco,
+Marcador de inicio da fita.
+
+sendo que alfabeto de entrada e auxiliar não podem ter intersecção
+simbolo em branco não pode estar em nenhum deles
+e também marcador de inicio não pode estar em nenhum deles.
+
+L(M) é a linguagem reconhecida por M,
+uma Linguagem é Turing-reconhecível se é recursivamente enumeravel,
+Existe uma maquina M tal que L(M) = L.
+
+M pode entrar em loop, aceitar ou rejeitar uma cadeia.
+M decide L se a reconhece e para com qualquer entrada.
+Uma linguagem é decidivel se alguma máquina de Turing a decide/linguagem recursiva.
+
+
+Descrição de maquina de turing:
+
+Descrição formal:
+Especificação de cada um dos 7 elementos
+
+Descrição de alto Nível:
+ Esboço do modo de funcionamento.
+
+
+
+Funções de MT:
+uma MT pode definir uma linguagem, mas pode também computar uma função:
+A entrada da função é o conteudo da fita e a computação é o conteudo após parar.

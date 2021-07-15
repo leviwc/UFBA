@@ -1,0 +1,106 @@
+Gerenciamento de memoria:
+Temos uma hierarquia de memória onde no topo é mais rapida mas tem menos memória
+e mais baixo é mais lento, por isso temos que otimizar os acessos no uso.
+
+Monoprogramação:
+Sem paginação: gerenciamento mais simples;
+apenas um processo na memória;
+
+modelo de multiprogramação:
+varios processos rodando na Ram, para gerenciar temos a MMU
+
+Temos 2 registradores base e limite para previnir acesso indevido
+base: endereço de inicio,
+limite: tamanho de espaço da memoria,
+
+Particionamento da memoria:
+pode ser
+Partição fixa: alocação estatica.
+Partição variável: alocação dinamica.
+
+Partição fixas:
+    problema de fragmentação:
+        Interna: desperdício dentro da área alocada para um processo;
+            Ex: processo de tamanho 40k ocupa partição de 50k;
+
+        Externa: desperdício fora da área alocada para um processo;
+            Dua partições livres: PL1 com 25k e PL2 com 100k, e um processo de tamanho de 110k para se executado,
+            Mesmo tendo 125k livres não pode executar pois não tem 110k contiguos livres.
+
+Partições Variáveis:
+ Tamanho e número de partições variam;
+ otimiza a utilização da memória mas complica a alocação e liberação da memória;
+
+    Para isso sera utilizado Compactação, porem isso utiliza a cpu.
+
+    Tecnica com Bitmaps:
+        Memória é dividida em unidades de alocação em kbytes;
+        cada unidade corresponde a um bit no bitmap:
+            0-> livre
+            1-> ocupado
+        Tamanho do bitmap depende do tamanho da unidade e do tamanho da memória;
+        Ex:
+            unidades de alaocação pequenas -> bitmap grande;
+            unidades de alocação grandes -> perda de espaço;
+    
+    Tecnica com Lista encadeada:
+    Uma lista para os espaços vazios e outra para os espaços cheios, ou uma lista para ambos;
+
+    Esse bitmap ou lista encadeada fica na propria memoria
+
+    Algoritmos de alocação de segmentos:
+
+    First fit: 
+        Primeiro segmento é usado, é rapido mas pode desperdiçar memoria por fragmentação.
+        
+    Next fit:
+        1 segmento é usado, mas na proxima alocação inicia de onde parou anteriormente,
+        tem desempenho inferior
+    
+    Best fit:
+        vai procurar sempre o lugar que vai melhor encaixar, é mais lento,
+    
+    Worst fit:
+        aloca sempre o maior disponivel
+    
+    Quick fit:
+        Mantém listas separadas para os espaços mais requisitados;
+    
+Memória Virtual (MV)
+    Programas maiores que a memória eram dividos em pedaços menores chamados de overlay;
+
+    O sistema divida a memoria em overlays, e realizava o chaveamento
+
+    Com a MV eu vou dar a sensação de ter mais memoria principal doque se tem.
+    
+    Espaço de Endereçamento Virtual
+        Todos os endereços virtuais que esse processo pode gerenciar
+
+    Espaço de endereçamento Físico
+        são os endereços reais no espaço fisico.
+    
+    Os processos então fazem referença a endereços virtuais, não aos endereços reais/fisicos
+    
+    quem mapeia os endereços virtuais é a  MMU:
+        processador manda o endereço lógico pra MMU que converte para endereço Físico na memoria principal.
+    Tecnicas de MV:
+        Paginação:
+            blocos de tamanho fisicos que são chamados de PAGINAS;
+            SO tem uma lista em todas as PAGINAS
+        Segmentação:
+            blocos de tamanho arbitrário chamados de segmentos
+
+    Paginação:
+        Memória principal e Memória secundaria são organizadas em paginas de mesmo tamanho
+        A pagina é unidade básica de transferencia
+        Temos uma tabela de pagina que armazena as informações da página Virtual:
+            argumento de entrada -> número da páagina virtual;
+            argumento de saida(resultado) -> numero da pagina real(ou moldura de pagina - page frame);
+        
+        Ex:
+            Paginas de 4kb (4095 bytes/endereços)
+
+        se temos 4kb e 16 paginas, precisamos de 16 bits para representar um local da memoria,
+        uma vez que os 4 primeiros indicam qual é a pagina, e os 12 outros são qual o deslocamento
+        é feito dentro da pagina de 4096 bytes (4kb).
+        

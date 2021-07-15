@@ -1,0 +1,8 @@
+Resultado com busca binaria: 10
+3105.673000 s
+Resultado com backtracking apenas: 10
+2.614000 s
+Resultado testando todas as possibilidades: 10
+6667.569000 s
+Resultado com busca binaria otimizada: 10
+2466.423000 s
